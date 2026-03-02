@@ -25,32 +25,30 @@ public class MoveZeroes {
 
     public static void main(String[] args) {
         int[] arr = {0,1,0,3,12};
-        moveZeroes(arr);
+        moveZeroes(arr,0);
     }
 
 
-    public static void moveZeroes(int[] nums) {
-        if (nums.length == 0) {
+    /**
+     * 将指定数字移动到数组最后
+     * @param arr
+     * @param target
+     */
+    public static void moveZeroes(int[] arr, int target) {
+        if (arr.length == 0) {
             return;
         }
-        nums = Arrays.stream(nums).dropWhile(n -> n == 0).toArray();
-        // 1. hashmap标记元素为0的索引以及平移位数
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int diffCount = 1;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] == 0) {
-                map.put(i,diffCount);
-                diffCount++;
+        int[] result = new int[arr.length];
+        int left = 0, right = arr.length - 1;
+
+        for (int num : arr) {
+            if (num == target) {
+                result[right--] = num;  // 目标值放右边
+            } else {
+                result[left++] = num;   // 其他值放左边
             }
         }
-
-        for (int i = 0; i < nums.length; i++) {
-            // 如果需要
-            if (map.containsKey(i)) {
-
-            }
-
-        }
+        System.out.println("result = " + Arrays.toString(result));
 
 
     }
