@@ -24,34 +24,36 @@ import java.util.stream.Collectors;
 public class MoveZeroes {
 
     public static void main(String[] args) {
-        int[] arr = {0,1,0,3,12};
-        moveZeroes(arr,0);
+        int[] arr = {0,0,1};
+        moveZeroes(arr);
+        System.out.println("arr = " + Arrays.toString(arr));
     }
 
 
     /**
      * 将指定数字移动到数组最后
-     * @param arr
-     * @param target
+     * @param nums
      */
-    public static void moveZeroes(int[] arr, int target) {
-        if (arr.length == 0) {
+    public static void moveZeroes(int[] nums) {
+        if (nums.length == 0) {
             return;
         }
-        int[] result = new int[arr.length];
-        int left = 0, right = arr.length - 1;
-
-        for (int num : arr) {
-            if (num == target) {
-                result[right--] = num;  // 目标值放右边
-            } else {
-                result[left++] = num;   // 其他值放左边
+        int index = 0;
+        // 覆盖
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[index] = nums[i];
+                index++;
             }
         }
-        System.out.println("result = " + Arrays.toString(result));
+
+        for (int i = index; i < nums.length; i++) {
+            nums[i] = 0;
+        }
 
 
     }
+
 
 
 
